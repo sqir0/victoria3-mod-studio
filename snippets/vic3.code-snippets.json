@@ -1,0 +1,355 @@
+{
+  "Country Event": {
+    "prefix": ["event", "country_event"],
+    "body": [
+      "namespace = ${1:my_events}",
+      "",
+      "${1:my_events}.${2:1} = {",
+      "\ttype = country_event",
+      "\tplacement = root",
+      "\t",
+      "\ttitle = ${1:my_events}.${2:1}.t",
+      "\tdesc = ${1:my_events}.${2:1}.d",
+      "\t",
+      "\tevent_image = {",
+      "\t\tvideo = \"gfx/event_pictures/${3:unspecific_ruler_speaking_to_advisors}.bk2\"",
+      "\t}",
+      "\t",
+      "\ton_created_soundeffect = \"event:/SFX/UI/Alerts/event_appear\"",
+      "\ticon = \"gfx/interface/icons/event_icons/event_default.dds\"",
+      "\t",
+      "\ttrigger = {",
+      "\t\t${4:# conditions}",
+      "\t}",
+      "\t",
+      "\timmediate = {",
+      "\t\t${5:# immediate effects}",
+      "\t}",
+      "\t",
+      "\toption = {",
+      "\t\tname = ${1:my_events}.${2:1}.a",
+      "\t\tdefault_option = yes",
+      "\t\t${6:# effects}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a country event"
+  },
+  "State Event": {
+    "prefix": ["state_event"],
+    "body": [
+      "namespace = ${1:my_events}",
+      "",
+      "${1:my_events}.${2:1} = {",
+      "\ttype = state_event",
+      "\tplacement = scope:state",
+      "\t",
+      "\ttitle = ${1:my_events}.${2:1}.t",
+      "\tdesc = ${1:my_events}.${2:1}.d",
+      "\t",
+      "\tevent_image = {",
+      "\t\tvideo = \"gfx/event_pictures/${3:unspecific_factory_interior}.bk2\"",
+      "\t}",
+      "\t",
+      "\ttrigger = {",
+      "\t\t${4:# conditions}",
+      "\t}",
+      "\t",
+      "\toption = {",
+      "\t\tname = ${1:my_events}.${2:1}.a",
+      "\t\t${5:# effects}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a state event"
+  },
+  "Decision": {
+    "prefix": ["decision"],
+    "body": [
+      "${1:my_decision} = {",
+      "\tis_shown = {",
+      "\t\t${2:# when to show}",
+      "\t}",
+      "\t",
+      "\tpossible = {",
+      "\t\t${3:# requirements}",
+      "\t}",
+      "\t",
+      "\twhen_taken = {",
+      "\t\t${4:# effects}",
+      "\t}",
+      "\t",
+      "\tai_chance = {",
+      "\t\tbase = ${5:100}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a decision"
+  },
+  "Journal Entry": {
+    "prefix": ["journal", "journal_entry", "je"],
+    "body": [
+      "je_${1:my_journal} = {",
+      "\ticon = \"gfx/interface/icons/event_icons/${2:event_default}.dds\"",
+      "\tgroup = je_group_${3:historical_content}",
+      "\t",
+      "\tpossible = {",
+      "\t\t${4:# conditions}",
+      "\t}",
+      "\t",
+      "\tcomplete = {",
+      "\t\t${5:# completion conditions}",
+      "\t}",
+      "\t",
+      "\ton_complete = {",
+      "\t\t${6:# effects on completion}",
+      "\t}",
+      "\t",
+      "\tprogressbar = yes",
+      "\tcurrent_value = {",
+      "\t\tvalue = root.var:${7:je_progress}",
+      "\t}",
+      "\tgoal_add_value = {",
+      "\t\tvalue = ${8:100}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a journal entry"
+  },
+  "Scripted Trigger": {
+    "prefix": ["scripted_trigger", "trigger"],
+    "body": [
+      "${1:my_trigger} = {",
+      "\t${2:# conditions}",
+      "}"
+    ],
+    "description": "Create a scripted trigger"
+  },
+  "Scripted Effect": {
+    "prefix": ["scripted_effect", "effect"],
+    "body": [
+      "${1:my_effect} = {",
+      "\t${2:# effects}",
+      "}"
+    ],
+    "description": "Create a scripted effect"
+  },
+  "Modifier": {
+    "prefix": ["modifier", "static_modifier"],
+    "body": [
+      "${1:my_modifier} = {",
+      "\ticon = \"gfx/interface/icons/modifiers/${2:default}.dds\"",
+      "\t",
+      "\t${3:country_prestige_add} = ${4:10}",
+      "}"
+    ],
+    "description": "Create a modifier"
+  },
+  "Building": {
+    "prefix": ["building"],
+    "body": [
+      "building_${1:my_building} = {",
+      "\tbuilding_group = bg_${2:manufacturing}",
+      "\ttexture = \"gfx/interface/icons/building_icons/${3:building_default}.dds\"",
+      "\t",
+      "\tunlocking_technologies = {",
+      "\t\t${4:tech_name}",
+      "\t}",
+      "\t",
+      "\tproduction_method_groups = {",
+      "\t\t${5:pmg_my_group}",
+      "\t}",
+      "\t",
+      "\trequired_construction = construction_cost_${6:medium}",
+      "}"
+    ],
+    "description": "Create a building"
+  },
+  "Production Method": {
+    "prefix": ["pm", "production_method"],
+    "body": [
+      "pm_${1:my_pm} = {",
+      "\ttexture = \"gfx/interface/icons/production_method_icons/${2:pm_default}.dds\"",
+      "\t",
+      "\tunlocking_technologies = {",
+      "\t\t${3:tech_name}",
+      "\t}",
+      "\t",
+      "\tbuilding_modifiers = {",
+      "\t\tworkforce_scaled = {",
+      "\t\t\t${4:# modifiers}",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a production method"
+  },
+  "GUI Window": {
+    "prefix": ["window", "gui_window"],
+    "body": [
+      "window = {",
+      "\tname = \"${1:my_window}\"",
+      "\tsize = { ${2:600} ${3:800} }",
+      "\tposition = { ${4:100} ${5:100} }",
+      "\tmovable = yes",
+      "\tlayer = windows_layer",
+      "\t",
+      "\tusing = Window_Background",
+      "\tusing = Window_Decoration",
+      "\t",
+      "\tvbox = {",
+      "\t\tusing = Window_Margins",
+      "\t\t",
+      "\t\theader_pattern = {",
+      "\t\t\tlayoutpolicy_horizontal = expanding",
+      "\t\t\t",
+      "\t\t\tblockoverride \"window_header_name\" {",
+      "\t\t\t\ttext = \"${6:WINDOW_TITLE}\"",
+      "\t\t\t}",
+      "\t\t\t",
+      "\t\t\tblockoverride \"button_close\" {",
+      "\t\t\t\tonclick = \"[ExecuteConsoleCommand('gui.ClearWidgets ${1:my_window}')]\"",
+      "\t\t\t}",
+      "\t\t}",
+      "\t\t",
+      "\t\t${7:# content}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a GUI window"
+  },
+  "GUI Button": {
+    "prefix": ["button", "gui_button"],
+    "body": [
+      "button = {",
+      "\tname = \"${1:my_button}\"",
+      "\tsize = { ${2:200} ${3:40} }",
+      "\t",
+      "\tusing = default_button",
+      "\t",
+      "\ttext = \"${4:BUTTON_TEXT}\"",
+      "\t",
+      "\tonclick = \"[${5:Execute(Action)}]\"",
+      "\t",
+      "\ttooltip = \"${6:BUTTON_TOOLTIP}\"",
+      "}"
+    ],
+    "description": "Create a GUI button"
+  },
+  "If Statement": {
+    "prefix": ["if"],
+    "body": [
+      "if = {",
+      "\tlimit = {",
+      "\t\t${1:# conditions}",
+      "\t}",
+      "\t${2:# effects}",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "If-Else Statement": {
+    "prefix": ["ifelse", "if_else"],
+    "body": [
+      "if = {",
+      "\tlimit = {",
+      "\t\t${1:# conditions}",
+      "\t}",
+      "\t${2:# effects if true}",
+      "}",
+      "else = {",
+      "\t${3:# effects if false}",
+      "}"
+    ],
+    "description": "If-else statement"
+  },
+  "Random List": {
+    "prefix": ["random_list", "randomlist"],
+    "body": [
+      "random_list = {",
+      "\t${1:50} = {",
+      "\t\t${2:# effects}",
+      "\t}",
+      "\t${3:50} = {",
+      "\t\t${4:# effects}",
+      "\t}",
+      "}"
+    ],
+    "description": "Random list"
+  },
+  "Trigger Event": {
+    "prefix": ["trigger_event"],
+    "body": [
+      "trigger_event = {",
+      "\tid = ${1:namespace}.${2:1}",
+      "\tdays = ${3:1}",
+      "}"
+    ],
+    "description": "Trigger an event"
+  },
+  "Add Modifier": {
+    "prefix": ["add_modifier"],
+    "body": [
+      "add_modifier = {",
+      "\tname = ${1:modifier_name}",
+      "\tmonths = ${2:12}",
+      "}"
+    ],
+    "description": "Add a modifier"
+  },
+  "Every Country": {
+    "prefix": ["every_country"],
+    "body": [
+      "every_country = {",
+      "\tlimit = {",
+      "\t\t${1:# conditions}",
+      "\t}",
+      "\t${2:# effects}",
+      "}"
+    ],
+    "description": "Every country scope"
+  },
+  "Every State": {
+    "prefix": ["every_state", "every_scope_state"],
+    "body": [
+      "every_scope_state = {",
+      "\tlimit = {",
+      "\t\t${1:# conditions}",
+      "\t}",
+      "\t${2:# effects}",
+      "}"
+    ],
+    "description": "Every state scope"
+  },
+  "Save Scope As": {
+    "prefix": ["save_scope_as"],
+    "body": [
+      "save_scope_as = ${1:scope_name}"
+    ],
+    "description": "Save current scope"
+  },
+  "Localization Variable": {
+    "prefix": ["locvar", "loc_variable"],
+    "body": [
+      "\\$${1:variable}\\$"
+    ],
+    "description": "Localization variable"
+  },
+  "Scripted Value": {
+    "prefix": ["scripted_value"],
+    "body": [
+      "${1:my_value} = {",
+      "\tvalue = ${2:0}",
+      "\t",
+      "\tadd = {",
+      "\t\tvalue = ${3:10}",
+      "\t\tif = {",
+      "\t\t\tlimit = { ${4:# condition} }",
+      "\t\t\tadd = ${5:5}",
+      "\t\t}",
+      "\t}",
+      "}"
+    ],
+    "description": "Create a scripted value"
+  }
+}

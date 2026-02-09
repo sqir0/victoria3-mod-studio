@@ -1,0 +1,211 @@
+{
+  "name": "victoria3-mod-studio",
+  "displayName": "Victoria 3 Mod Studio",
+  "description": "Complete modding toolkit for Victoria 3 - Syntax highlighting, IntelliSense, validation, and more!",
+  "version": "1.0.0",
+  "publisher": "sqir",
+  "author": {
+    "name": "SqiR"
+  },
+  "license": "MIT",
+  "icon": "icons/icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Linters",
+    "Formatters"
+  ],
+  "keywords": [
+    "victoria 3",
+    "vic3",
+    "paradox",
+    "modding",
+    "pdx",
+    "clausewitz"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sqir0/vic3-database"
+  },
+  "activationEvents": [
+    "onLanguage:vic3",
+    "onLanguage:vic3-gui",
+    "workspaceContains:**/*.txt",
+    "workspaceContains:**/*.gui"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "vic3",
+        "aliases": ["Victoria 3", "vic3", "Paradox Script"],
+        "extensions": [".txt"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/icon.png",
+          "dark": "./icons/icon.png"
+        }
+      },
+      {
+        "id": "vic3-gui",
+        "aliases": ["Victoria 3 GUI", "vic3-gui", "Paradox GUI"],
+        "extensions": [".gui"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "vic3",
+        "scopeName": "source.vic3",
+        "path": "./syntaxes/vic3.tmLanguage.json"
+      },
+      {
+        "language": "vic3-gui",
+        "scopeName": "source.vic3",
+        "path": "./syntaxes/vic3.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "vic3",
+        "path": "./snippets/vic3.code-snippets"
+      },
+      {
+        "language": "vic3-gui",
+        "path": "./snippets/vic3.code-snippets"
+      }
+    ],
+    "configuration": {
+      "title": "Victoria 3 Mod Studio",
+      "properties": {
+        "vic3.validation.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable real-time validation"
+        },
+        "vic3.validation.unknownKeywordWarning": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show warnings for unknown keywords"
+        },
+        "vic3.completion.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable auto-completion"
+        },
+        "vic3.completion.showDescriptions": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show descriptions in completion items"
+        },
+        "vic3.hover.enable": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable hover information"
+        },
+        "vic3.language": {
+          "type": "string",
+          "enum": ["en", "tr"],
+          "default": "en",
+          "description": "Description language"
+        },
+        "vic3.formatting.tabSize": {
+          "type": "number",
+          "default": 4,
+          "description": "Number of spaces for indentation"
+        },
+        "vic3.formatting.insertSpaceAroundOperators": {
+          "type": "boolean",
+          "default": true,
+          "description": "Insert spaces around = operators"
+        }
+      }
+    },
+    "commands": [
+	  {
+        "command": "vic3.reloadDatabase",
+        "title": "Reload Database",
+        "category": "Victoria 3"
+	  },
+	  {
+        "command": "vic3.validate",
+        "title": "Validate Current File",
+        "category": "Victoria 3"
+      },
+      {
+        "command": "vic3.validateWorkspace",
+        "title": "Validate All Files",
+        "category": "Victoria 3"
+      },
+      {
+        "command": "vic3.formatDocument",
+        "title": "Format Document",
+        "category": "Victoria 3"
+      },
+      {
+        "command": "vic3.showKeywordInfo",
+        "title": "Show Keyword Database",
+        "category": "Victoria 3"
+      },
+      {
+        "command": "vic3.insertSnippet",
+        "title": "Insert Snippet",
+        "category": "Victoria 3"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "vic3.validate",
+          "when": "resourceLangId == vic3 || resourceLangId == vic3-gui",
+          "group": "vic3@1"
+        },
+        {
+          "command": "vic3.formatDocument",
+          "when": "resourceLangId == vic3 || resourceLangId == vic3-gui",
+          "group": "vic3@2"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "vic3.validate",
+          "when": "resourceLangId == vic3 || resourceLangId == vic3-gui"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "vic3.validate",
+        "key": "ctrl+shift+v",
+        "when": "resourceLangId == vic3 || resourceLangId == vic3-gui"
+      },
+      {
+        "command": "vic3.formatDocument",
+        "key": "ctrl+shift+f",
+        "when": "resourceLangId == vic3 || resourceLangId == vic3-gui"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^18.0.0",
+    "node-fetch": "^3.3.2",
+    "@types/node-fetch": "^2.6.4",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.45.0",
+    "typescript": "^5.1.6",
+    "@vscode/vsce": "^2.19.0"
+  }
+}
